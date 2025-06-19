@@ -38,10 +38,11 @@ spanning-tree mode pvst
 !
 !
 interface GigabitEthernet0/0/0
+ description RT-HH-01 - SW-HH-01
  no ip address
  duplex auto
  speed auto
- shutdown
+ ipv6 address FD00:CAFE:AA::1/64
 !
 interface GigabitEthernet0/0/1
  no ip address
@@ -83,6 +84,7 @@ ip classless
 !
 ip flow-export version 9
 !
+ipv6 route ::/0 FD00:CAFE:AA::2
 !
 !
 !
