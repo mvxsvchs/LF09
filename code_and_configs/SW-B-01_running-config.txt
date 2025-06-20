@@ -12,7 +12,7 @@ hostname SW-B-01
 !
 !
 !
-no ip cef
+ip cef
 ipv6 unicast-routing
 !
 no ipv6 cef
@@ -43,7 +43,7 @@ interface GigabitEthernet1/0/1
  no ip address
  duplex auto
  speed auto
- ipv6 address FD00:CAFE:CC::1/64
+ ipv6 address FD00:CAFE:CC::2/64
 !
 interface GigabitEthernet1/0/2
 !
@@ -115,6 +115,7 @@ ip classless
 !
 ip flow-export version 9
 !
+ipv6 route ::/0 FD00:CAFE:CC::1
 !
 !
 !

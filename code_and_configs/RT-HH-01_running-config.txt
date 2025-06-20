@@ -85,6 +85,10 @@ ip classless
 ip flow-export version 9
 !
 ipv6 route ::/0 FD00:CAFE:AA::2
+ipv6 route 2001:DB8:B30::/64 FD00:CAFE:AB::2
+ipv6 route 2001:DB8:B40::/64 FD00:CAFE:AB::2
+ipv6 route 2001:DB8:C50::/64 FD00:CAFE:AC::2
+ipv6 route 2001:DB8:D60::/64 FD00:CAFE:AD::2
 !
 !
 !
