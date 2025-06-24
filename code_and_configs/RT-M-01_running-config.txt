@@ -1,5 +1,5 @@
 !
-version 16.6.4
+version 15.4
 no service timestamps log datetime msec
 no service timestamps debug datetime msec
 no service password-encryption
@@ -20,6 +20,8 @@ no ipv6 cef
 !
 !
 !
+username admin secret 5 $1$mERr$8ECNi3Z2VL/wK.WVUnJJz0
+!
 !
 !
 !
@@ -28,6 +30,7 @@ no ipv6 cef
 !
 !
 no ip domain-lookup
+ip domain-name rt-hh.com
 !
 !
 spanning-tree mode pvst
@@ -43,6 +46,7 @@ interface GigabitEthernet0/0/0
  duplex auto
  speed auto
  ipv6 address FD00:CAFE:DD::1/64
+ ipv6 ospf 1 area 4
 !
 interface GigabitEthernet0/0/1
  no ip address
@@ -60,18 +64,21 @@ interface Serial0/1/0
  description RT-M-01 - RT-HH-01
  no ip address
  ipv6 address FD00:CAFE:AD::2/64
+ ipv6 ospf 1 area 0
  clock rate 2000000
 !
 interface Serial0/1/1
  description RT-M-01 - RT-B-01
  no ip address
  ipv6 address FD00:CAFE:CD::2/64
+ ipv6 ospf 1 area 0
  clock rate 2000000
 !
 interface Serial0/2/0
  description RT-M-01 - RT-HL-01
  no ip address
  ipv6 address FD00:CAFE:BD::2/64
+ ipv6 ospf 1 area 0
 !
 interface Serial0/2/1
  no ip address
@@ -82,28 +89,30 @@ interface Vlan1
  no ip address
  shutdown
 !
+ipv6 router ospf 1
+ router-id 1.1.1.4
+ log-adjacency-changes
+!
 ip classless
 !
 ip flow-export version 9
 !
-ipv6 route ::/0 FD00:CAFE:DD::2
-ipv6 route 2001:DB8:A10::/64 FD00:CAFE:AD::1
-ipv6 route 2001:DB8:A20::/64 FD00:CAFE:AD::1
-ipv6 route 2001:DB8:B30::/64 FD00:CAFE:BD::1
-ipv6 route 2001:DB8:B40::/64 FD00:CAFE:BD::1
-ipv6 route 2001:DB8:C50::/64 FD00:CAFE:CD::1
 !
 !
+banner motd #--->I am RT-M-01<---#
 !
 !
 !
 !
 line con 0
+ password a
+ login
 !
 line aux 0
 !
 line vty 0 4
- login
+ login local
+ transport input ssh
 !
 !
 !
